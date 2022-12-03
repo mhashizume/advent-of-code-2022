@@ -10,3 +10,16 @@ score += input_file.count {|i| i.match(win_regex) } * 6
 score += input_file.count {|i| i.match(draw_regex) } * 3
 
 puts score
+
+pt2_score = 0
+game_state = {'X' => 0, 'Y' => 3, 'Z' => 6}
+rock_regex = 'A Y|B X|C Z'
+paper_regex = 'A Z|B Y|C X'
+scissors_regex = 'A X|B Z|C Y'
+
+game_state.each {|key,val| pt2_score += input_file.count {|i| i.match(key) } * val }
+pt2_score += input_file.count {|i| i.match(rock_regex) }
+pt2_score += input_file.count {|i| i.match(paper_regex) } * 2
+pt2_score += input_file.count {|i| i.match(scissors_regex) } * 3
+
+puts pt2_score
