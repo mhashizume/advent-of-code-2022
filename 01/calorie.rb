@@ -9,7 +9,9 @@ end
 def calculate_calories(input)
   combined_array = []
   input.each {|array| combined_array.push(array.sum) }
-  puts combined_array.max
+  combined_array
 end
 
-calculate_calories(sanitize_input)
+puts calculate_calories(sanitize_input).max
+
+puts calculate_calories(sanitize_input).max(3).sum
