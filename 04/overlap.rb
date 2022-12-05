@@ -7,13 +7,13 @@ def to_range(input_array)
 end
 
 assignments.each do |pairings|
-  one, two = pairings.split(',').map {|x| to_range(x.split('-').map(&:to_i)) }
+  one, two = pairings.split(',').map { |x| to_range(x.split('-').map(&:to_i)) }
 
   inclusive_count += 1 if one.cover?(two) || two.cover?(one)
 
   one.each do |x|
     if two.to_a.include?(x)
-      overlap_count +=1
+      overlap_count += 1
       break
     end
   end
