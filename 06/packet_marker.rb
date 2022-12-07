@@ -5,7 +5,7 @@ def part_one(input)
   counter = 4
   sequence = part_one_input.slice!(0, 4).chars
 
-  while sequence != sequence.uniq do 
+  while sequence != sequence.uniq
     sequence.shift
     sequence.push(part_one_input.slice!(0, 1))
     counter += 1
@@ -18,7 +18,7 @@ def part_two(input)
   counter = 14
   sequence = part_two_input.slice!(0, 14).chars
 
-  while sequence != sequence.uniq do 
+  while sequence != sequence.uniq
     sequence.shift
     sequence.push(part_two_input.slice!(0, 1))
     counter += 1
