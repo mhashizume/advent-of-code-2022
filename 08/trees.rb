@@ -34,4 +34,51 @@ primary_array[1..-2].each do |tree_row|
   end
 end
 
-p visible_trees
+scenic_score = 0
+
+# Iterate through all the rows of trees except for the top and bottom, which have automatic zero scenic scores
+primary_array[1..-2].each do |tree_row|
+  counter = 1
+
+  # Exclude the edges of each row, which will have zero scenic score
+  tree_row[1..-2].each do |tree|
+    tree_row_index = primary_array.index(tree_row)
+
+    left_counter = 0
+    tree_row[0..counter - 1].reverse_each do |left_tree|
+      left_counter += 1
+      break if left_counter == tree_row[0..counter - 1].size
+      break if left_tree >= tree
+    end
+
+    right_counter = 0
+    tree_row[counter + 1..].each do |right_tree|
+      right_counter += 1
+      break if right_counter == tree_row[counter + 1..].size
+      break if right_tree >= tree
+    end
+
+    up_counter = 0
+    (primary_array[0..tree_row_index - 1].map { |i| i[counter] }).reverse_each do |up_tree|
+      up_counter += 1
+      break if up_counter == primary_array[0..tree_row_index - 1].size
+      break if up_tree >= tree
+    end
+
+    down_counter = 0
+    (primary_array[tree_row_index + 1..].map { |i| i[counter] }).each do |down_tree|
+      down_counter += 1
+      break if down_counter == primary_array[tree_row_index + 1..].size
+      break if down_tree >= tree
+    end
+
+    tree_score = left_counter * right_counter * up_counter * down_counter
+
+    scenic_score = tree_score if tree_score > scenic_score
+    counter += 1
+    counter = 1 if counter == tree_row[1..-2].length + 1
+  end
+end
+
+p "The number of visible trees is #{visible_trees}"
+p "The highest scenic score is #{scenic_score}"
