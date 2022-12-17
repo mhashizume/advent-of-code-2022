@@ -1,4 +1,4 @@
-instructions = File.readlines('input', chomp: true).map!(&:split).map! { |i| [i[0], i[1].to_i] }
+instructions = File.readlines('input_example', chomp: true).map!(&:split).map! { |i| [i[0], i[1].to_i] }
 
 cycle = 0
 register = 1
